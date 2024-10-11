@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #e9ecef; /* Color de fondo suave */
+        }
+
+        h1 {
+            text-align: center;
+            color: #343a40; /* Color del título */
+        }
+
+        .botones {
+            margin-top: 20px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #007bff; /* Color azul */
+            color: white; /* Texto blanco */
+            transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Color azul más oscuro al pasar el ratón */
+            transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: white; /* Fondo blanco para el resultado */
+            padding: 10px;
+            border-radius: 5px; /* Bordes redondeados */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            width: 80%; /* Ancho responsivo */
+            max-width: 400px; /* Ancho máximo */
+            text-align: center; /* Centrar texto */
+            color: #343a40; /* Color del texto del resultado */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>¡Juguemos a Piedra, Papel o Tijera!</h1>
+
+    <!-- Botones para elegir piedra, papel o tijera -->
+    <div class="botones">
+        <button onclick="jugar('piedra')">Piedra</button>
+        <button onclick="jugar('papel')">Papel</button>
+        <button onclick="jugar('tijera')">Tijera</button>
+    </div>
+
+    <!-- Mostrará el resultado del juego -->
+    <div id="resultado"></div>
+
+    <script>
+        // Función que se ejecuta cuando el usuario elige una opción
+        function jugar(eleccionUsuario) {
+            const opciones = ['piedra', 'papel', 'tijera'];
+            const eleccionComputadora = opciones[Math.floor(Math.random() * 3)];
+
+            let resultado = '';
+
+            // Determinamos el resultado del juego
+            if (eleccionUsuario === eleccionComputadora) {
+                resultado = 'Es un empate. Ambos eligieron ' + eleccionUsuario + '.';
+            } else if (
+                (eleccionUsuario === 'piedra' && eleccionComputadora === 'tijera') ||
+                (eleccionUsuario === 'papel' && eleccionComputadora === 'piedra') ||
+                (eleccionUsuario === 'tijera' && eleccionComputadora === 'papel')
+            ) {
+                resultado = '¡Ganaste! La computadora eligió ' + eleccionComputadora + '.';
+            } else {
+                resultado = 'Perdiste. La computadora eligió ' + eleccionComputadora + '.';
+            }
+
+            // Mostramos el resultado en el HTML
+            document.getElementById('resultado').textContent = resultado;
+        }
+    </script>
+
+</body>
+</html>
